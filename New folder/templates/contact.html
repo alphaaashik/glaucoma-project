@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Contact Us</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+        }
+
+        header {
+            background-color: #111; /* Darker header background */
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section */
+        .container {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto; /* Center the main content */
+            background-color: #111; /* Darker background for main content */
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #ccc; /* Lighter gray for paragraph */
+            margin-bottom: 2rem;
+        }
+
+        form {
+            margin-bottom: 40px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555; /* Light gray border */
+            border-radius: 4px;
+            background-color: #222; /* Darker input background */
+            color: #fff; /* White text */
+        }
+
+        button {
+            background-color: #007BFF; /* Blue button */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #111; /* Darker background for footer */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" style="display: flex; align-items: center;">
+            <a href="{{ url_for('index') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
+                <img src="/static/logo.png" alt="K AND A Technologies Logo" style="height: 50px; margin-right: 10px;">
+                <h1 style="margin: 0; font-size: 24px;">Glaucoma Prediction Dashboard</h1>
+            </a>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}" >Home</a>
+            <a href="{{ url_for('predict_page') }}">Predict</a>
+            <a href="{{ url_for('image_prediction_page') }}">Image Prediction</a>
+            <a href="{{ url_for('treatment_page') }}">Treatment Stages</a>
+            <a href="{{ url_for('contact_page') }}">Contact Us</a>
+        </nav>
+    </header>
+    <main class="container mt-5">
+        <h1>Contact Us</h1>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+          {% if messages %}
+            <div class="alert alert-dismissible fade show" role="alert">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+              {% endfor %}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('contact_page') }}" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 K AND A Technologies</p>
+            <p>Phone: 9345631604 | 8438586711</p>
+            <p>Email: <a href="mailto:karthikeyaan06@gmail.com">karthikeyaan06@gmail.com</a> | <a href="mailto:aashikb51@gmail.com">aashikb51@gmail.com</a></p>
+            <p>Location: Coimbatore</p>
+        </div>
+    </footer>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

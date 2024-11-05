@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glaucoma Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        header {
+            background-color: #111;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 600;
+        }
+
+        nav a.active,
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #111;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        #imageUpload {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+
+        img {
+            max-width: 300px;
+            margin: 20px auto;
+            display: none;
+            border-radius: 8px;
+            border: 1px solid #555;
+        }
+
+        #result {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #ccc;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .social-media {
+            margin-top: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" style="display: flex; align-items: center;">
+            <a href="{{ url_for('index') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
+                <img src="/static/logo.png" alt="K AND A Technologies Logo" style="height: 50px; margin-right: 10px;">
+                <h1 style="margin: 0; font-size: 24px;">Glaucoma Prediction Dashboard</h1>
+            </a>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}" >Home</a>
+            <a href="{{ url_for('predict_page') }}">Predict</a>
+            <a href="{{ url_for('image_prediction_page') }}">Image Prediction</a>
+            <a href="{{ url_for('treatment_page') }}">Treatment Stages</a>
+            <a href="{{ url_for('contact_page') }}">Contact Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Glaucoma Detection</h1>
+        <p>Upload an image to predict whether it is Glaucoma or Non-Glaucoma.</p>
+        
+        <input type="file" id="imageUpload" accept="image/*">
+        <img id="uploadedImage" src="#" alt="Uploaded Image">
+        
+        <div id="result">Result will appear here</div>
+    </main>
+
+    <script>
+        document.getElementById("imageUpload").onchange = function(event) {
+            const imageFile = event.target.files[0];
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgElement = document.getElementById('uploadedImage');
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                };
+                reader.readAsDataURL(imageFile);
+
+                const formData = new FormData();
+                formData.append('image', imageFile);
+
+                fetch('http://localhost:5000/image-predict', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('result').textContent = `Error: ${data.error}`;
+                    } else {
+                        document.getElementById('result').textContent = `Prediction: ${data.prediction}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').textContent = 'Error during prediction';
+                });
+            }
+        };
+    </script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 K AND A Technologies</p>
+            <p>Phone: 9345631604 | 8438586711</p>
+            <p>Email: <a href="mailto:karthikeyaan06@gmail.com">karthikeyaan06@gmail.com</a> | <a href="mailto:aashikb51@gmail.com">aashikb51@gmail.com</a></p>
+            <p>Location: Coimbatore</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

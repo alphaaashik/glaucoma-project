@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glaucoma Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+        }
+        img {
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Glaucoma Detection</h1>
+    <p>Upload an image to predict whether it is Glaucoma or Non-Glaucoma.</p>
+    
+    <input type="file" id="imageUpload" accept="image/*">
+    <img id="uploadedImage" src="#" alt="Uploaded Image" style="display:none;">
+    
+    <div id="result">Result will appear here</div>
+
+    <script>
+        document.getElementById("imageUpload").onchange = function(event) {
+            const imageFile = event.target.files[0];
+            if (imageFile) {
+                // Display the uploaded image
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgElement = document.getElementById('uploadedImage');
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                };
+                reader.readAsDataURL(imageFile);
+
+                // Prepare the form data to send to the server
+                const formData = new FormData();
+                formData.append('image', imageFile);
+
+                // Send image to server for prediction
+                fetch('http://localhost:5000/predict', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('result').textContent = `Error: ${data.error}`;
+                    } else {
+                        document.getElementById('result').textContent = `Prediction: ${data.prediction}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').textContent = 'Error during prediction';
+                });
+            }
+        };
+    </script>
+</body>
+</html>

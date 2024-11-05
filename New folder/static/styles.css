@@ -1,0 +1,185 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+}
+
+header {
+    background-color: #111; /* Darker header background */
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 600;
+}
+
+nav a.active {
+    text-decoration: underline;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+#hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222; /* Darker background for hero section */
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    color: #fff; /* White text */
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #ccc; /* Lighter gray for paragraph */
+    margin-bottom: 1.5rem;
+}
+
+.cta-button {
+    background-color: #007BFF; /* Blue button */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.cta-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Features Section */
+#features {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#features h3 {
+    font-size: 2.5rem;
+    color: #fff; /* White text */
+    margin-bottom: 1.5rem;
+}
+
+.feature-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: #333; /* Darker card background */
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow */
+    width: 30%;
+    text-align: center;
+}
+
+.card img {
+    max-width: 60px;
+    margin-bottom: 1rem;
+}
+
+.card h4 {
+    font-size: 1.5rem;
+    color: #fff; /* White text for card title */
+    margin-bottom: 0.75rem;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #ccc; /* Lighter gray for card text */
+}
+
+/* About Section */
+#about {
+    background-color: #222; /* Darker background for about section */
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#about h3 {
+    font-size: 2.5rem;
+    color: #fff; /* White text */
+    margin-bottom: 1.5rem;
+}
+
+#about p {
+    font-size: 1.2rem;
+    color: #ccc; /* Lighter gray for paragraph */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Footer */
+footer {
+    background-color: #111; /* Darker footer background */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem; /* Add some margin to separate from content above */
+}
+
+footer a {
+    color: #007BFF; /* Link color */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+header .logo-container {
+    display: flex;
+    align-items: center;
+}
+
+header .logo-container img {
+    height: 50px; /* Adjust height as needed */
+    margin-right: 10px; /* Space between logo and title */
+}
+
+header .logo-container h1 {
+    margin: 0; /* Remove default margin */
+    font-size: 24px; /* Adjust font size as needed */
+}

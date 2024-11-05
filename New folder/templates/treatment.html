@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Glaucoma Dashboard - Treatment Stages</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+        }
+
+        header {
+            background-color: #111; /* Darker header background */
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 600;
+        }
+
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto; /* Center main content */
+        }
+
+        /* Treatment Stages Section */
+        section#treatment {
+            background-color: #222; /* Darker background for treatment section */
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #fff; /* White text */
+            margin-bottom: 1rem;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #ccc; /* Lighter gray for paragraph */
+            margin-bottom: 2rem;
+        }
+
+        .treatment-stages {
+            margin-top: 20px;
+        }
+
+        .stage {
+            background-color: #333; /* Darker background for each stage */
+            border: 1px solid #555; /* Light gray border */
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        .stage h3 {
+            font-size: 1.8rem; /* Heading size for stages */
+            color: #fff; /* White text for headings */
+            margin-bottom: 0.5rem;
+        }
+
+        .stage p {
+            font-size: 1rem;
+            color: #ccc; /* Lighter gray for stage description */
+        }
+
+        footer {
+            background-color: #111; /* Darker footer background */
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" style="display: flex; align-items: center;">
+            <a href="{{ url_for('index') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
+                <img src="/static/logo.png" alt="K AND A Technologies Logo" style="height: 50px; margin-right: 10px;">
+                <h1 style="margin: 0; font-size: 24px;">Glaucoma Prediction Dashboard</h1>
+            </a>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}" >Home</a>
+            <a href="{{ url_for('predict_page') }}">Predict</a>
+            <a href="{{ url_for('image_prediction_page') }}">Image Prediction</a>
+            <a href="{{ url_for('treatment_page') }}">Treatment Stages</a>
+            <a href="{{ url_for('contact_page') }}">Contact Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Treatment Stages Section -->
+        <section id="treatment">
+            <h2>Glaucoma Treatment Stages</h2>
+            <p>Learn about the stages of glaucoma and available treatments.</p>
+
+            <div class="treatment-stages">
+                <div class="stage">
+                    <h3>Stage 1: Early Glaucoma</h3>
+                    <p>In the early stage, regular monitoring and prescription eye drops can slow the progression.</p>
+                </div>
+
+                <div class="stage">
+                    <h3>Stage 2: Moderate Glaucoma</h3>
+                    <p>More noticeable vision changes occur. Treatment may include laser therapy or stronger medications.</p>
+                </div>
+
+                <div class="stage">
+                    <h3>Stage 3: Advanced Glaucoma</h3>
+                    <p>Increased vision loss and optic nerve damage. Surgery may be required to relieve intraocular pressure.</p>
+                </div>
+
+                <div class="stage">
+                    <h3>Stage 4: End-Stage Glaucoma</h3>
+                    <p>Severe vision loss or blindness. The focus is on improving quality of life and symptom management.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 K AND A Technologies</p>
+            <p>Phone: 9345631604 | 8438586711</p>
+            <p>Email: <a href="mailto:karthikeyaan06@gmail.com">karthikeyaan06@gmail.com</a> | <a href="mailto:aashikb51@gmail.com">aashikb51@gmail.com</a></p>
+            <p>Location: Coimbatore</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

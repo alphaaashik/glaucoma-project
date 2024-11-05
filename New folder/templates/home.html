@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glaucoma Dashboard - Home</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo-container" style="display: flex; align-items: center;">
+            <a href="{{ url_for('index') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
+                <img src="/static/logo.png" alt="K AND A Technologies Logo" style="height: 50px; margin-right: 10px;">
+                <h1 style="margin: 0; font-size: 24px;">Glaucoma Prediction Dashboard</h1>
+            </a>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}" >Home</a>
+            <a href="{{ url_for('predict_page') }}">Predict</a>
+            <a href="{{ url_for('image_prediction_page') }}">Image Prediction</a>
+            <a href="{{ url_for('treatment_page') }}">Treatment Stages</a>
+            <a href="{{ url_for('contact_page') }}">Contact Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h2>Detect Glaucoma Early, Protect Your Vision</h2>
+                <p>Your one-stop solution for glaucoma risk assessment and tracking your eye health. Start your journey to safeguard your sight today.</p>
+                <a href="{{ url_for('image_prediction_page') }}" class="cta-button">Start Prediction</a>
+            </div>
+            <div class="hero-image">
+                <img src="/static/modern eye.webp" alt="Glaucoma illustration">
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features">
+            <h3>What You Can Do with This Dashboard</h3>
+            <div class="feature-cards">
+                <div class="card">
+                    <img src="/static/eyes.webp" alt="Predict Icon">
+                    <h4>Predict Glaucoma Risk</h4>
+                    <p>Input your medical data and get an accurate prediction of your glaucoma risk with advanced algorithms.</p>
+                </div>
+
+                <div class="card">
+                    <img src="/static/eye.webp" alt="Track Icon">
+                    <h4>Predict Glaucoma Types</h4>
+                    <p>There are various types, including open-angle and angle-closure glaucoma, with symptoms that may range from gradual vision loss to sudden, severe eye pain depending on the type.</p>
+                </div>
+
+                <div class="card">
+                    <img src="/static/eyes types.webp" alt="Treatment Icon">
+                    <h4>Learn Treatment Stages</h4>
+                    <p>Understand the stages of glaucoma and explore possible treatments to manage your condition.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h3>About Glaucoma</h3>
+            <p>Glaucoma is a group of eye conditions that can cause blindness by damaging the optic nerve, which is vital for good vision. Early detection through regular eye exams is crucial to prevent permanent damage.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 K AND A Technologies</p>
+            <p>Phone: 9345631604 | 8438586711</p>
+            <p>Email: <a href="mailto:karthikeyaan06@gmail.com">karthikeyaan06@gmail.com</a> | <a href="mailto:aashikb51@gmail.com">aashikb51@gmail.com</a></p>
+            <p>Location: Coimbatore</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

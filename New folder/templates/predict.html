@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glaucoma Prediction</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Link to the CSS file -->
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+        }
+
+        header {
+            background-color: #111; /* Darker header background */
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 600;
+        }
+
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Form Styles */
+        form {
+            background-color: #222; /* Darker background for the form */
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff; /* White text for labels */
+        }
+
+        form input[type="number"],
+        form select,
+        form input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #444; /* Darker border */
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            background-color: #333; /* Darker input background */
+            color: #fff; /* White text for inputs */
+        }
+
+        form input[type="checkbox"] {
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        form button {
+            background-color: #007BFF; /* Blue button */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Result Section */
+        .result-section {
+            background-color: #222; /* Darker background for results */
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .result-section h2 {
+            margin-top: 0; /* Remove top margin for h2 */
+        }
+
+        .result-box {
+            background-color: #333; /* Darker result box background */
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            color: #fff; /* White text for result */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111; /* Darker footer background */
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="predict-page">
+        <header>
+            <div class="logo-container" style="display: flex; align-items: center;">
+                <a href="{{ url_for('index') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
+                    <img src="/static/logo.png" alt="K AND A Technologies Logo" style="height: 50px; margin-right: 10px;">
+                    <h1 style="margin: 0; font-size: 24px;">Glaucoma Prediction Dashboard</h1>
+                </a>
+            </div>
+            <nav>
+                <a href="{{ url_for('index') }}" >Home</a>
+                <a href="{{ url_for('predict_page') }}">Predict</a>
+                <a href="{{ url_for('image_prediction_page') }}">Image Prediction</a>
+                <a href="{{ url_for('treatment_page') }}">Treatment Stages</a>
+                <a href="{{ url_for('contact_page') }}">Contact Us</a>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Glaucoma Prediction</h1>
+            <p>Enter your details below to predict the likelihood of glaucoma.</p>
+
+            <form id="predict" method="POST" action="/predict">
+                <!-- Age -->
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+
+                <!-- Gender -->
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <!-- Family History -->
+                <label for="family-history">Family History:</label>
+                <select id="family-history" name="family-history" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <!-- Eye Pressure (IOP) -->
+                <label for="eye-pressure">Eye Pressure (IOP):</label>
+                <input type="number" id="eye-pressure" name="eye-pressure" required>
+
+                <!-- Visual Acuity Measurements -->
+                <label for="visual-acuity">Visual Acuity Measurements (e.g., LogMAR 0.2):</label>
+                <input type="text" id="visual-acuity" name="visual-acuity" placeholder="e.g., LogMAR 0.2" required>
+
+                <!-- VFT Sensitivity -->
+                <label for="vft-sensitivity">VFT Sensitivity:</label>
+                <input type="number" id="vft-sensitivity" name="vft-sensitivity" required>
+
+                <!-- VFT Specificity -->
+                <label for="vft-specificity">VFT Specificity:</label>
+                <input type="number" id="vft-specificity" name="vft-specificity" required>
+
+                <!-- Medication Usage -->
+                <label for="medication-usage">Medication Usage:</label>
+                <select id="medication-usage" name="medication-usage" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <!-- Symptoms -->
+                <label>Visual Symptoms:</label>
+                <div>
+                    <input type="checkbox" name="symptoms" value="blurred-vision"> Blurred Vision
+                    <input type="checkbox" name="symptoms" value="eye-pain"> Eye Pain
+                    <input type="checkbox" name="symptoms" value="none" checked hidden> <!-- Ensure 'none' is included -->
+                </div>
+
+                <!-- Medical History -->
+                <label for="medical-history">Medical History:</label>
+                <select id="medical-history" name="medical-history" required>
+                    <option value="none">None</option>
+                    <option value="diabetes">Diabetes</option>
+                    <option value="hypertension">Hypertension</option>
+                </select>
+
+                <!-- Cataract Status -->
+                <label for="cataract-status">Cataract Status:</label>
+                <select id="cataract-status" name="cataract-status" required>
+                    <option value="present">Present</option>
+                    <option value="absent">Absent</option>
+                </select>
+
+                <!-- Angle Closure Status -->
+                <label for="angle-closure-status">Angle Closure Status:</label>
+                <select id="angle-closure-status" name="angle-closure-status" required>
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                </select>
+
+                <!-- Submit Button -->
+                <button type="submit">Predict</button>
+            </form>
+
+            <div class="result-section">
+                <h2>Prediction Result</h2>
+                <div class="result-box">Your result will appear here.</div>
+                <p>We recommend visiting an eye specialist if the risk is high.</p>
+
+                <!-- Medication button and info section -->
+                <button id="medication-btn" style="display:none;">Show Medication</button>
+                <div id="medication-info" style="display:none; margin-top: 1rem;">
+                    <!-- Medication info will be displayed here -->
+                </div>
+
+            </div>
+        </main>
+
+        <script>
+            document.getElementById('predict').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+        
+                const formData = new FormData(this);
+                // const inputData = {};
+                const inputData = {
+    'Visual Acuity Measurements': 'LogMAR 2.0', // Adjust based on actual measurement
+    'VFT Sensitivity': 20.0,  // Example value
+    'VFT Specificity': 10.0,   // Example value
+    'Medication Usage': 'No',
+    'Visual Symptoms': 'Blurred Vision', // Adjust based on actual symptoms
+    'Gender': 'Female', // Adjust based on actual data
+    'Family History': 'No', // Adjust based on actual data
+    'Medical History': 'Diabetes', // Adjust based on actual data
+    'Cataract Status': 'Present', // Adjust based on actual data
+    'Angle Closure Status': 'Open' // Adjust based on actual data
+};
+
+                // Convert FormData to a JSON object
+                formData.forEach((value, key) => {
+                    // Adjust the key names to match expected backend keys
+                    if (key === 'visual-acuity') {
+                        inputData['Visual Acuity Measurements'] = value;
+                    } else if (key === 'family-history') {
+                        inputData['Family History'] = value;
+                    } else if (key === 'medical-history') {
+                        inputData['Medical History'] = value;
+                    } else if (key === 'cataract-status') {
+                        inputData['Cataract Status'] = value;
+                    } else if (key === 'angle-closure-status') {
+                        inputData['Angle Closure Status'] = value;
+                    } else if (key === 'medication-usage') {
+                        inputData['Medication Usage'] = value;
+                    } else if (key === 'symptoms') {
+                        // Convert checkboxes into a list of selected values
+                        if (!inputData[key]) {
+                            inputData[key] = [];
+                        }
+                        inputData[key].push(value);
+                    } else {
+                        inputData[key] = value;
+                    }
+                });
+        
+                // Log or process the inputData object
+                console.log(inputData); 
+        
+                // Proceed with the backend request to send the data for prediction
+                
+// Fetch request
+fetch('/predict', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(inputData),
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+    }
+    return response.json();
+})
+.then(result => {
+    // Display result in the result box
+    document.querySelector('.result-box').textContent = result.prediction;
+})
+.catch(error => {
+    console.error('Error:', error);
+    document.querySelector('.result-box').textContent = 'An error occurred. Please try again.';
+});
+
+            });
+
+            // Display the medication options based on the prediction result
+document.getElementById('predict').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const inputData = {};
+
+    formData.forEach((value, key) => {
+        inputData[key] = value;
+    });
+
+    fetch('/predict', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputData),
+    })
+    .then(response => response.json())
+    .then(result => {
+        document.querySelector('.result-box').textContent = result.prediction;
+        document.getElementById('medication-btn').style.display = 'inline-block'; // Show the medication button
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.querySelector('.result-box').textContent = 'An error occurred. Please try again.';
+    });
+});
+
+// Show medications when the medication button is clicked
+document.getElementById('medication-btn').addEventListener('click', function() {
+    const medications = {
+        'Primary Open-Angle Glaucoma': 'Timolol, Latanoprost, Brimonidine',
+        'Angle-Closure Glaucoma': 'Acetazolamide, Mannitol, Pilocarpine',
+        'Normal-Tension Glaucoma': 'Brimonidine, Prostaglandin analogs, Beta-blockers',
+    };
+
+    const prediction = document.querySelector('.result-box').textContent;
+    const medicationInfo = medications[prediction] || 'Consult an ophthalmologist for medication recommendations.';
+    
+    const medicationDiv = document.getElementById('medication-info');
+    medicationDiv.style.display = 'block';
+    medicationDiv.textContent = `Recommended Medications: ${medicationInfo}`;
+});
+
+        </script>
+<footer>
+    <div class="container">
+        <p>&copy; 2024 K AND A Technologies</p>
+        <p>Phone: 9345631604 | 8438586711</p>
+        <p>Email: <a href="mailto:karthikeyaan06@gmail.com">karthikeyaan06@gmail.com</a> | <a href="mailto:aashikb51@gmail.com">aashikb51@gmail.com</a></p>
+        <p>Location: Coimbatore</p>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
