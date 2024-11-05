@@ -32,3 +32,4 @@ It is used for the backend running the code of the models and backend
 It is the cnn model for prediction glauocma using image.
 #dnn_model1.h5
 It is used for glaucoma types.
+#Screen shots
