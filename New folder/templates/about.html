@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Mentors and Institutions</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        header {
+            background-color: #111;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mentor-card {
+            background-color: #222;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+
+        .mentor-card:hover {
+            transform: scale(1.02);
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #111;
+        }
+
+        /* Add media queries for responsiveness */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container" style="display: flex; align-items: center;">
+            <a href="{{ url_for('index') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
+                <img src="/static/logo.png" alt="K AND A Technologies Logo" style="height: 50px; margin-right: 10px;">
+                <h1 style="margin: 0; font-size: 24px;">Glaucoma Prediction Dashboard</h1>
+            </a>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('predict_page') }}">Predict</a>
+            <a href="{{ url_for('image_prediction_page') }}">Image Prediction</a>
+            <a href="{{ url_for('treatment_page') }}">Treatment Stages</a>
+            <a href="{{ url_for('contact_page') }}">Contact Us</a>
+            <a href="{{ url_for('about_page') }}">About</a>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <h1>Mentors and Institutions</h1>
+        
+        <div class="mentor-card">
+            <h2>Sri Rajeshwara Educational Society & SR University</h2>
+            <p>A renowned institution with over 45 years of experience, overseeing 95 educational institutions, committed to fostering innovation and academic excellence.</p>
+        </div>
+
+        <div class="mentor-card">
+            <h2>Dr. Venkataramana Veeramsetty</h2>
+            <p>Associate Professor at SR University with expertise in AI applications in electrical engineering and deep learning for image classification. He has trained over 1,000 students through NVIDIA Deep Learning Institute.</p>
+        </div>
+
+        <div class="mentor-card">
+            <h2>Sri Ramakrishna Engineering College (SREC)</h2>
+            <p>An autonomous institution established in 1994, offering diverse engineering programs and recognized for its quality education and strong industry connections.</p>
+        </div>
+
+        <div class="mentor-card">
+            <h2>Mrs. R. S. Ramya</h2>
+            <p>Assistant Professor at SREC, specializing in network security. She is pursuing her Ph.D. and has over 11 years of teaching experience, with multiple publications in her field.</p>
+        </div>
+
+        <div class="mentor-card">
+            <h2>Mrs. K. DhanaShree</h2>
+            <p>Assistant Professor at SREC, focusing on image processing. With three years of experience, she has authored several Scopus-indexed papers and mentors numerous projects.</p>
+        </div>
+
+        <div class="mentor-card">
+            <h2>Special Thanks</h2>
+            <p>We are grateful to our mentors for their invaluable guidance during our internships, enhancing our skills and knowledge in the field.</p>
+            <h2>Dr. Anuradha</h2>
+            <p>Professor at SREC with 17 years of experience, focusing on data mining and artificial intelligence, guiding various advanced research projects.</p>
+        </div>
+
+        <div class="mentor-card">
+            <h2>Students</h2>
+            <p><strong>Karthikeyaan S</strong></p>
+            <p>Currently Studying the Mtech CSE Integrated course (5years)</p>
+            <p><strong>Mohammed Aashik B</strong></p>
+            <p>Currently Studying the Mtech CSE Integrated course (5years)</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 K AND A Technologies</p>
+            <p>Phone: 9345631604 | 8438586711</p>
+            <p>Email: <a href="mailto:karthikeyaan06@gmail.com">karthikeyaan06@gmail.com</a> | <a href="mailto:aashikb51@gmail.com">aashikb51@gmail.com</a></p>
+            <p>Location: Coimbatore</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
