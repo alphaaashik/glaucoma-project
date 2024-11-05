@@ -228,7 +228,9 @@ def contact_page():
         return redirect(url_for('contact_page'))
 
     return render_template('contact.html')
-
+@app.route('/about')
+def about_page():
+    return render_template('about.html')
 # def contact_page():
 #     """Contact form for users to send messages."""
 #     if request.method == 'POST':
